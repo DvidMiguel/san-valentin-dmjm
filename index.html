@@ -227,13 +227,18 @@ yesBtn.addEventListener("click", () => {
 
 function showTransition() {
     final.classList.add("hidden");
+
+    // 🔇 detener música
+    music.pause();
+    music.currentTime = 0;
+
     document.getElementById("transition").classList.remove("hidden");
 
-    // Después de 3 segundos mostrar el video
     setTimeout(() => {
         showVideo();
     }, 3000);
 }
+
 
 function showVideo() {
     document.getElementById("transition").classList.add("hidden");
@@ -241,8 +246,16 @@ function showVideo() {
     const video = document.getElementById("loveVideo");
 
     videoContainer.classList.remove("hidden");
-    video.play();
+
+    // Forzar carga
+    video.load();
+
+    // Intentar reproducir
+    video.play().catch(() => {
+        console.log("Autoplay bloqueado, el usuario debe presionar play.");
+    });
 }
+
 
 
 function createHearts() {
