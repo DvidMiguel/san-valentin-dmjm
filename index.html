@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Quieres ser mi San Valentín?</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(270deg, #ff4e88, #ff9ecf, #ff4e88);
+    background-size: 600% 600%;
+    animation: gradientMove 8s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+}
+
+@keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.container {
+    z-index: 2;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+.buttons {
+    margin-top: 30px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 10px;
+}
+
+#yesBtn {
+    background-color: #28a745;
+    color: white;
+    transform: scale(0.5);
+    cursor: not-allowed;
+}
+
+#noBtn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+.final-message {
+    font-size: 2rem;
+    animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* corazones flotando */
+.heart {
+    position: absolute;
+    color: rgba(255,255,255,0.7);
+    font-size: 20px;
+    animation: floatUp 5s linear infinite;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(100vh);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>¿Quieres ser mi San Valentín? 💖</h1>
+
+    <div class="buttons">
+        <button id="yesBtn" disabled>Sí 💘</button>
+        <button id="noBtn">No 💔</button>
+    </div>
+
+    <div id="final" class="hidden">
+        <p class="final-message">
+            Sabía que dirías que sí 😌❤️<br><br>
+            Eres la mejor decisión de mi vida.<br>
+            Gracias por existir.
+        </p>
+    </div>
+</div>
+
+<!-- Música -->
+<audio id="music" src="https://www.bensound.com/bensound-music/bensound-romantic.mp3"></audio>
+
+<script>
+let noClicks = 0;
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const final = document.getElementById("final");
+const music = document.getElementById("music");
+
+const noTexts = [
+    "¿Segura? 🥺",
+    "Piensa bien… 😢",
+    "Última oportunidad 😏"
+];
+
+noBtn.addEventListener("click", () => {
+    noClicks++;
+
+    if (noClicks <= 3) {
+        noBtn.textContent = noTexts[noClicks - 1];
+        let scale = 0.5 + (noClicks * 0.5);
+        yesBtn.style.transform = `scale(${scale})`;
+    }
+
+    if (noClicks === 3) {
+        noBtn.classList.add("hidden");
+        yesBtn.disabled = false;
+        yesBtn.style.cursor = "pointer";
+    }
+});
+
+yesBtn.addEventListener("click", () => {
+    document.querySelector(".buttons").classList.add("hidden");
+    final.classList.remove("hidden");
+
+    music.play();
+    startConfetti();
+    createHearts();
+});
+
+function createHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }, 300);
+}
+
+function startConfetti() {
+    for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement("div");
+        confetti.style.position = "absolute";
+        confetti.style.width = "10px";
+        confetti.style.height = "10px";
+        confetti.style.backgroundColor = `hsl(${Math.random()*360},100%,50%)`;
+        confetti.style.top = "-10px";
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.opacity = 0.7;
+        confetti.style.animation = `fall ${Math.random()*3+2}s linear forwards`;
+        document.body.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 5000);
+    }
+}
+
+const style = document.createElement("style");
+style.innerHTML = `
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}`;
+document.head.appendChild(style);
+
+</script>
+
+</body>
+</html>
