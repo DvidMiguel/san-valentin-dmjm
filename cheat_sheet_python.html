@@ -1,29 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Cheat Sheet Python - Fundamentos</title>
+<title>Python Cheat Sheet - Fundamentos</title>
+
 <style>
+
 body{
-font-family: Arial;
-margin:40px;
-background:#f5f7fb;
+    font-family: Consolas, Arial;
+    background:#f4f6fb;
+    margin:40px;
+}
+
+h1{
+    text-align:center;
+    color:#1f2937;
+}
+
+.section{
+    margin-top:40px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px,1fr));
+    gap:20px;
 }
 
 .card{
-background:white;
-padding:15px;
-margin-bottom:15px;
-border-radius:10px;
-box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0px 4px 10px rgba(0,0,0,0.08);
+}
+
+.card h3{
+    margin-top:0;
+    color:#2563eb;
+}
+
+.desc{
+    color:#374151;
+    margin-bottom:10px;
+}
+
+pre{
+    background:#111827;
+    color:#e5e7eb;
+    padding:12px;
+    border-radius:8px;
+    overflow-x:auto;
 }
 
 code{
-background:#eee;
-padding:5px;
-display:block;
-margin-top:8px;
+    font-family: Consolas;
 }
+
 </style>
 </head>
 
@@ -31,59 +63,136 @@ margin-top:8px;
 
 <h1>Python Cheat Sheet — Fundamentos</h1>
 
+<div class="section">
+
+<h2>Python Base</h2>
+
+<div class="grid">
+
+<!-- 1 -->
 <div class="card">
-<h3>Variables</h3>
-<p>Almacenan valores.</p>
-<code>nombre = "David"</code>
+<h3>1. Variables</h3>
+<div class="desc">Permiten almacenar valores.</div>
+<pre><code>
+nombre = "David"
+edad = 29
+altura = 1.81
+</code></pre>
 </div>
 
+<!-- 2 -->
 <div class="card">
-<h3>Tipos de datos</h3>
-<p>int, float, str, bool</p>
-<code>edad = 29</code>
+<h3>2. Tipos de datos</h3>
+<div class="desc">int, float, str, bool</div>
+<pre><code>
+numero = 10
+precio = 19.99
+texto = "Hola"
+activo = True
+</code></pre>
 </div>
 
+<!-- 3 -->
 <div class="card">
-<h3>Operadores</h3>
-<code>a + b</code>
+<h3>3. Operadores</h3>
+<div class="desc">Operaciones matemáticas y comparaciones.</div>
+<pre><code>
+a = 10
+b = 3
+
+suma = a + b
+division = a / b
+mayor = a > b
+</code></pre>
 </div>
 
+<!-- 4 -->
 <div class="card">
-<h3>Condicionales</h3>
-<code>
+<h3>4. Condicionales</h3>
+<div class="desc">Ejecutan código dependiendo de condiciones.</div>
+<pre><code>
+edad = 18
+
 if edad >= 18:
-    print("Mayor")
-</code>
+    print("Mayor de edad")
+else:
+    print("Menor de edad")
+</code></pre>
 </div>
 
+<!-- 5 -->
 <div class="card">
-<h3>Listas</h3>
-<code>nums = [1,2,3]</code>
+<h3>5. Listas</h3>
+<div class="desc">Colección ordenada de valores.</div>
+<pre><code>
+numeros = [1,2,3,4]
+print(numeros[0])
+</code></pre>
 </div>
 
+<!-- 6 -->
 <div class="card">
-<h3>Diccionarios</h3>
-<code>{"nombre":"David"}</code>
+<h3>6. Diccionarios</h3>
+<div class="desc">Estructura clave → valor.</div>
+<pre><code>
+persona = {
+ "nombre": "David",
+ "edad": 29
+}
+
+print(persona["nombre"])
+</code></pre>
 </div>
 
+<!-- 7 -->
 <div class="card">
-<h3>For</h3>
-<code>for n in lista:</code>
+<h3>7. Bucle for</h3>
+<div class="desc">Permite recorrer estructuras.</div>
+<pre><code>
+numeros = [1,2,3]
+
+for n in numeros:
+    print(n)
+</code></pre>
 </div>
 
+<!-- 8 -->
 <div class="card">
-<h3>While</h3>
-<code>while condicion:</code>
+<h3>8. Bucle while</h3>
+<div class="desc">Se ejecuta mientras la condición sea verdadera.</div>
+<pre><code>
+contador = 0
+
+while contador < 3:
+    print(contador)
+    contador += 1
+</code></pre>
 </div>
 
+<!-- 9 -->
 <div class="card">
-<h3>Funciones</h3>
-<code>def funcion():</code>
+<h3>9. Funciones</h3>
+<div class="desc">Permiten reutilizar código.</div>
+<pre><code>
+def sumar(a, b):
+    return a + b
+
+resultado = sumar(5,3)
+</code></pre>
 </div>
 
+<!-- 10 -->
 <div class="card">
-<h3>Import</h3>
-<code>import math</code>
+<h3>10. Importación de módulos</h3>
+<div class="desc">Permite usar librerías externas.</div>
+<pre><code>
+import math
+
+print(math.sqrt(16))
+</code></pre>
+</div>
+
+</div>
 </div>
 
 </body>
